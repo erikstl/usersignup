@@ -22,26 +22,46 @@ def valid_password(password):
     return PASS_RE.match(password)
 
 def build_page(username='',email='',uError='',eError='',pError='',vError=''):
+    header = """
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>User Signup - LC101</title>
+        <style type="text/css">
+            .error {
+                color: red;
+            }
+        </style>
+    </head>
+    <body>
+    <h1>Signup</h1>
+    """
+
+    footer = """
+    </body>
+    </html>
+    """
+
     username_label = "<label><p>Name: </label>"
-    username_input = "<input type='text' name='username' value='" + username + "'/> {0}</p>".format(uError)
+    username_input = "<input type='text' name='username' value='" + username + "'/><span class='error'> {0}</span></p>".format(uError)
 
     email_label = "<label><p>EMail: </label>"
-    email_input = "<input type='text' name='email' value='" + email + "'/> {0}</p>".format(eError)
+    email_input = "<input type='text' name='email' value='" + email + "'/><span class='error'> {0}</span></p>".format(eError)
 
     password_label = "<label><p>Password: </label>"
-    password_input = "<input type='password' name='password'> {0}</p>".format(pError)
+    password_input = "<input type='password' name='password'><span class='error'> {0}</span></p>".format(pError)
 
     password2_label = "<label><p>Repeat Password: </label>"
-    password2_input = "<input type='password' name='password2'> {0}</p>".format(vError)
+    password2_input = "<input type='password' name='password2'><span class='error'> {0}</span></p>".format(vError)
 
     submit_button = "<input type='submit' value='Sign Up'>"
 
-    form = ("<form method='post'>" +
+    form = (header + "<form method='post'>" +
             username_label + username_input +
             email_label + email_input + password_label + password_input +
             password2_label + password2_input +
             "<br>" + submit_button +
-            "</form>")
+            "</form>" + footer)
 
     return form
 
